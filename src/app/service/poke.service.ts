@@ -11,6 +11,6 @@ export class PokeService {
   constructor(private http: HttpClient) { }
 
   getPokemon(name: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}${name}`);
+    return this.http.get<any>(`${this.apiUrl}${name.toLowerCase()}`);
   }
 }

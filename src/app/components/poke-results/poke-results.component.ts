@@ -18,7 +18,8 @@ export class PokeResultsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['name'] && this.name) {
-      this.pokeService.getPokemon(this.name).subscribe(data => {
+      const searchName = this.name.toLowerCase();
+      this.pokeService.getPokemon(searchName).subscribe(data => {
         this.pokemon = data;
       });
     }
