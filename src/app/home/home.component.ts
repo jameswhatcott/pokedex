@@ -7,6 +7,7 @@ import { PokeResultsComponent } from '../components/poke-results/poke-results.co
   standalone: true,
   imports: [PokeSearchComponent, PokeResultsComponent],
   template: `
+  <h1>Welcome to the Pokedex</h1>
     <app-poke-search (searchEvent)="onSearch($event)"></app-poke-search>
     <app-poke-results [name]="name"></app-poke-results>
   `,
