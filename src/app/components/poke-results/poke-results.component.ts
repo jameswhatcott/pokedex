@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokeService } from '../../service/poke.service';
 
@@ -9,14 +9,17 @@ import { PokeService } from '../../service/poke.service';
   templateUrl: './poke-results.component.html',
   styleUrls: ['./poke-results.component.scss']
 })
-export class PokeResultsComponent implements OnInit {
+export class PokeResultsComponent implements OnChanges {
+  @Input() name: string = '';
   pokemon: any;
 
   constructor(private pokeService: PokeService) { }
 
-  ngOnInit(): void {
-    this.pokeService.getPokemon('pikachu').subscribe(data => {
-      this.pokemon = data;
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['name'] && this.name) {
+      this.pokeService.getPokemon(this.name).subscribe(data => {
+        this.pokemon = data;
+      });
+    }
   }
 }
