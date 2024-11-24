@@ -1,3 +1,18 @@
-<input [(ngModel)]="name" (keydown.enter)=
-"search()" placeholder="e.g. Bulbasaur">
-<button (click)="search()">Search</button>
+<div class="autocomplete">
+    <input
+      [(ngModel)]="name"
+      (keydown.enter)="search()"
+      (input)="onInput()"
+      placeholder="e.g. Pikachu"
+    />
+    <ul *ngIf="suggestions.length" class="suggestions">
+      <li
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+      >
+        {{ suggestion }}
+      </li>
+    </ul>
+  </div>
+  <button (click)="search()">Search</button>
+  
