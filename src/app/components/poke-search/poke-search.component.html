@@ -5,14 +5,15 @@
       (input)="onInput()"
       placeholder="e.g. Pikachu"
     />
-    <ul *ngIf="suggestions.length" class="suggestions">
-      <li
+    <div class="dropdown" *ngIf="suggestions.length">
+      <div
+        class="dropdown-item"
         *ngFor="let suggestion of suggestions"
         (click)="selectSuggestion(suggestion)"
       >
         {{ suggestion }}
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
   <button (click)="search()">Search</button>
   
