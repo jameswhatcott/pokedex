@@ -14,6 +14,13 @@ export class PokeResultsComponent implements OnChanges {
   @Input() name: string = '';
   pokemon: any;
 
+  playCry() {
+    const cryUrl = `${this.pokemon.cries.latest}`; // Adjust the path as needed
+    const audio = new Audio(cryUrl);
+    audio.play();
+  }
+
+
   constructor(private pokeService: PokeService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -21,6 +28,7 @@ export class PokeResultsComponent implements OnChanges {
       const searchName = this.name.toLowerCase();
       this.pokeService.getPokemon(searchName).subscribe(data => {
         this.pokemon = data;
+        console.log(data);
       });
     }
   }
