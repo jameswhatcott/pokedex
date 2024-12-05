@@ -1,1 +1,6 @@
-<p>browse works!</p>
+<div class="pokemon-grid">
+    <div class="pokemon-card" *ngFor="let pokemon of pokemons">
+      <img [src]="pokemon.imageUrl" (click)="showDetails(pokemon)" alt="{{pokemon.name}}">
+      <p>{{pokemon.name}}</p>
+    </div>
+  </div>
