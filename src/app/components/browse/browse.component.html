@@ -2,7 +2,7 @@
 <div class="pokemon-grid">
   <div class="pokemon-card" *ngFor="let pokemon of paginatedPokemons">
     <img [src]="pokemon.image" (click)="showDetails(pokemon)" alt="{{pokemon.name}}">
-    <p>{{pokemon.name}}</p>
+    <p>{{pokemon.name | capitalizeFirst}}</p>
   </div>
 </div>
 <div class="pagination-controls">

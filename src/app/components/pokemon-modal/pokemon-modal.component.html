@@ -3,6 +3,6 @@
   <button class="close-button" (click)="closeModal()">X</button>
   <h2>{{pokemon.name}}</h2>
   <img [src]="pokemon.image" alt="{{pokemon.name}}">
-  <p>Details about {{pokemon.name}}</p>
+  <p>Details about {{pokemon.name | capitalizeFirst}}</p>
   <!-- Add more details as needed -->
 </div>

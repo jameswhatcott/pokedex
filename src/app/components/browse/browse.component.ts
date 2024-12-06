@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../../service/poke.service';
 import { CommonModule } from '@angular/common';
 import { PokemonModalComponent } from '../pokemon-modal/pokemon-modal.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [CommonModule, PokemonModalComponent],
+  imports: [CommonModule, PokemonModalComponent, SharedModule],
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss']
 })
@@ -51,6 +52,7 @@ export class BrowseComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePaginatedPokemons();
+      this.scrollToTop();
     }
   }
 
@@ -58,6 +60,7 @@ export class BrowseComponent implements OnInit {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.updatePaginatedPokemons();
+      this.scrollToTop();
     }
   }
 
@@ -67,5 +70,9 @@ export class BrowseComponent implements OnInit {
 
   closeModal() {
     this.selectedPokemon = null;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
