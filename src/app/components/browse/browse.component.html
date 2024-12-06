@@ -10,3 +10,5 @@
   <span>Page {{currentPage}} of {{totalPages}}</span>
   <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
 </div>
+
+<app-pokemon-modal *ngIf="selectedPokemon" [pokemon]="selectedPokemon" (close)="closeModal()"></app-pokemon-modal>

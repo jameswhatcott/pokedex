@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../../service/poke.service';
 import { CommonModule } from '@angular/common';
+import { PokemonModalComponent } from '../pokemon-modal/pokemon-modal.component';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PokemonModalComponent],
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss']
 })
@@ -15,6 +16,7 @@ export class BrowseComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 30;
   totalPages: number = 1;
+  selectedPokemon: any = null;
 
   constructor(private pokeService: PokeService) {}
 
@@ -60,7 +62,10 @@ export class BrowseComponent implements OnInit {
   }
 
   showDetails(pokemon: any) {
-    // Logic to show modal with Pokémon details
-    console.log(pokemon);
+    this.selectedPokemon = pokemon;
+  }
+
+  closeModal() {
+    this.selectedPokemon = null;
   }
 }

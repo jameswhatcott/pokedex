@@ -1,0 +1,8 @@
+<div class="modal-backdrop" (click)="closeModal()"></div>
+<div class="modal-content">
+  <button class="close-button" (click)="closeModal()">X</button>
+  <h2>{{pokemon.name}}</h2>
+  <img [src]="pokemon.image" alt="{{pokemon.name}}">
+  <p>Details about {{pokemon.name}}</p>
+  <!-- Add more details as needed -->
+</div>
