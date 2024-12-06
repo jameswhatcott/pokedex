@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { PokeService } from '../../service/poke.service'; // Import PokeService
 
 @Component({
   selector: 'app-poke-search',
@@ -16,9 +16,7 @@ export class PokeSearchComponent {
   suggestions: string[] = [];
   @Output() searchEvent = new EventEmitter<string>();
 
-  private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=1000'; // Fetch all Pokémon names
-
-  constructor(private http: HttpClient) {}
+  constructor(private pokeService: PokeService) {} // Inject PokeService
 
   // Fetch suggestions when the user types
   onInput(): void {
@@ -27,7 +25,7 @@ export class PokeSearchComponent {
       return;
     }
 
-    this.http.get<any>(this.apiUrl).subscribe((data) => {
+    this.pokeService.getAllPokemon().subscribe((data) => {
       this.suggestions = data.results
         .map((pokemon: any) => pokemon.name)
         .filter((pokemonName: string) =>
@@ -44,8 +42,11 @@ export class PokeSearchComponent {
     this.search();
   }
 
-  // Emit the search event
+  // Emit the search event and fetch Pokémon details
   search(): void {
-    this.searchEvent.emit(this.name);
+    this.pokeService.getPokemon(this.name).subscribe((pokemon) => {
+      console.log(pokemon); // Handle the Pokémon details as needed
+      this.searchEvent.emit(this.name);
+    });
   }
 }

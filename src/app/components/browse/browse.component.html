@@ -1,6 +1,12 @@
+<h1>Who's your favorite Pokemon?</h1>
 <div class="pokemon-grid">
-    <div class="pokemon-card" *ngFor="let pokemon of pokemons">
-      <img [src]="pokemon.imageUrl" (click)="showDetails(pokemon)" alt="{{pokemon.name}}">
-      <p>{{pokemon.name}}</p>
-    </div>
+  <div class="pokemon-card" *ngFor="let pokemon of paginatedPokemons">
+    <img [src]="pokemon.image" (click)="showDetails(pokemon)" alt="{{pokemon.name}}">
+    <p>{{pokemon.name}}</p>
   </div>
+</div>
+<div class="pagination-controls">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{currentPage}} of {{totalPages}}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
