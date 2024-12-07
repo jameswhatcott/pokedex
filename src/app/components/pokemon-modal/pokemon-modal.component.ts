@@ -13,6 +13,10 @@ export class PokemonModalComponent {
   @Input() pokemon: any;
   @Output() close = new EventEmitter<void>();
 
+  ngOnInit() {
+    console.log('Pokemon data:', this.pokemon);
+  }
+
   closeModal() {
     this.close.emit();
   }

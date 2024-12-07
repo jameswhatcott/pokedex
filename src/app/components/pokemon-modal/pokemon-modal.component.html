@@ -1,8 +1,20 @@
 <div class="modal-backdrop" (click)="closeModal()"></div>
 <div class="modal-content">
   <button class="close-button" (click)="closeModal()">X</button>
-  <h2>{{pokemon.name}}</h2>
-  <img [src]="pokemon.image" alt="{{pokemon.name}}">
-  <p>Details about {{pokemon.name | capitalizeFirst}}</p>
-  <!-- Add more details as needed -->
+  <h2>{{ pokemon?.name | capitalizeFirst }}</h2>
+  <img [src]="pokemon?.image" alt="{{ pokemon?.name }}">
+  
+  <p *ngIf="pokemon?.types?.length">Type(s):</p>
+  <ul *ngIf="pokemon?.types?.length">
+    <li *ngFor="let type of pokemon.types">
+      {{ type.type.name | capitalizeFirst }}
+    </li>
+  </ul>
+  
+  <p *ngIf="pokemon?.abilities?.length">Abilities:</p>
+  <ul *ngIf="pokemon?.abilities?.length">
+    <li *ngFor="let ability of pokemon.abilities">
+      {{ ability.ability.name | capitalizeFirst }}
+    </li>
+  </ul>
 </div>

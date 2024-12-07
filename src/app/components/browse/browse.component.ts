@@ -35,6 +35,8 @@ export class BrowseComponent implements OnInit {
         this.pokemons = pokemonDetails.map((pokemon: any) => ({
           name: pokemon.name,
           image: pokemon.sprites?.front_default || 'https://via.placeholder.com/150',
+          types: pokemon.types.map((type: any) => ({ type: { name: type.type.name } })), // Ensure correct structure
+          abilities: pokemon.abilities.map((ability: any) => ({ ability: { name: ability.ability.name } })) // Ensure correct structure
         }));
         this.totalPages = Math.ceil(this.pokemons.length / this.itemsPerPage);
         this.updatePaginatedPokemons();
