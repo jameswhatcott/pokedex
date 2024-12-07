@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokeService } from '../../service/poke.service';
+import { PokeService } from '../../service/poke/poke.service';
 import { SharedModule } from '../../shared/shared.module'; // Adjust the path as necessary
 
 @Component({

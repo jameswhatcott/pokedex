@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PokeService } from '../../service/poke.service'; // Import PokeService
+import { PokeService } from '../../service/poke/poke.service'; // Import PokeService
 
 @Component({
   selector: 'app-poke-search',
