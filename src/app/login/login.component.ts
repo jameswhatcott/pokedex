@@ -7,15 +7,38 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  isLoginMode = true;
+  email = '';
+  password = '';
+  confirmPassword = '';
+  errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  onSubmit(): void {
-    this.authService.login(this.username, this.password).subscribe(
-      () => {},
-      err => alert('Invalid credentials')
-    );
+  switchMode() {
+    this.isLoginMode = !this.isLoginMode;
+    this.errorMessage = '';
+  }
+
+  onSubmit() {
+    if (this.isLoginMode) {
+      this.authService.login(this.email, this.password).subscribe(
+        () => {},
+        error => {
+          this.errorMessage = 'Invalid email or password.';
+        }
+      );
+    } else {
+      if (this.password !== this.confirmPassword) {
+        this.errorMessage = 'Passwords do not match.';
+        return;
+      }
+      this.authService.register(this.email, this.password).subscribe(
+        () => {},
+        error => {
+          this.errorMessage = error;
+        }
+      );
+    }
   }
 }

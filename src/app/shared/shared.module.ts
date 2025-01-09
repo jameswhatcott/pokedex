@@ -4,23 +4,25 @@ import { CapitalizeFirstPipe } from '../pipes/capitalize-first.pipe'; // Adjust 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from '../login/login.component';
+import { HeaderComponent } from '../components/header/header.component';
 
 
 @NgModule({
   declarations: [ 
     CapitalizeFirstPipe,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
  
   ],
   exports: [
     CapitalizeFirstPipe,
     LoginComponent,
     CommonModule,
+    
     FormsModule,
     HttpClientModule
   ],

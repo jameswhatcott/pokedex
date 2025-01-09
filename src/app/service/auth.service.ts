@@ -34,6 +34,9 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated || !!localStorage.getItem('token');
+    if (typeof localStorage !== 'undefined') {
+      return !!localStorage.getItem('token');
+    }
+    return false;
   }
 }
