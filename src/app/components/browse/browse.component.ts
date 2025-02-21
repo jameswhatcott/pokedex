@@ -18,6 +18,7 @@ export class BrowseComponent implements OnInit {
   itemsPerPage: number = 30;
   totalPages: number = 1;
   selectedPokemon: any = null;
+  isLoading: boolean = false;
 
   constructor(private pokeService: PokeService) {}
 
@@ -26,11 +27,12 @@ export class BrowseComponent implements OnInit {
   }
 
   fetchPokemons() {
+    this.isLoading = true; // Set loading state
     this.pokeService.getAllPokemon().subscribe(response => {
       const pokemonDetailsRequests = response.results.map((result: any) =>
         this.pokeService.getPokemon(result.name).toPromise()
       );
-
+      this.isLoading = false; // Reset loading state
       Promise.all(pokemonDetailsRequests).then(pokemonDetails => {
         this.pokemons = pokemonDetails.map((pokemon: any) => ({
           name: pokemon.name,
